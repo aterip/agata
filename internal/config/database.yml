@@ -1,0 +1,17 @@
+postgres_conf:
+  DB_HOST: localhost
+  DB_PORT: 5432
+  DB_NAME: test_postgres 
+  USER_TABLE: privat.users
+  COMPANY_TABLE: privat.companys
+  SERVICES_TABLE: privat.services
+  SCHEDULE_TABLE: task.schedule
+  DB_USER: test_name
+  DB_USER_PWD: test_pwd
+
+clickhouse_conf:
+  DB_HOST: localhost
+  DB_PORT: 9000
+  DB_USER: test_name
+  DB_USER_PWD: test_pwd
+
