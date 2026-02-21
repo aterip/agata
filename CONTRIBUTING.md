@@ -11,10 +11,10 @@ Thank you for your interest in contributing to the AGATA project! We welcome con
 - [Setting Up Your Development Environment](#setting-up-your-development-environment)
 
 ## Code of Conduct
-This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+This project and everyone participating in it is governed by the [Code of Conduct](https://www.contributor-covenant.org/). By participating, you are expected to uphold this code.
 
 ## Reporting Bugs and Feature Requests
-- Use [GitHub Issues](https://github.com/your-username/agata/issues) to report bugs and suggest features.
+- Use [GitHub Issues](https://github.com/aterip/agata/issues) to report bugs and suggest features.
 - Before creating a new issue, please check if a similar one already exists.
 - For bugs, provide detailed steps to reproduce, expected vs. actual behavior, and environment details (OS, component versions).
 - For feature requests, use the `enhancement` label.
