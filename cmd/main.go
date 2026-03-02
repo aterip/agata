@@ -2,22 +2,34 @@ package main
 
 import (
 	"log"
+	"net"
 	"net/http"
+	"time"
 
-	"github.com/aterip/agata/internal/server/router"
+	"github.com/aterip/agata/internal/server"
+	"github.com/go-chi/chi/v5"
 )
 
 func main() {
-	startServer()
+	router := server.RegisterHandlers()
+	startServer(router)
 
 }
 
-func startServer() {
+func startServer(router chi.Router) {
 
-	router.RegisterHandlers()
-	err := http.ListenAndServe(":8080", nil)
+	log.Println("start server")
+
+	listener, err := net.Listen("tcp", ":8081")
+
 	if err != nil {
 		log.Fatal(err)
 	}
+	server := &http.Server{
+		Handler:      router,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+	server.Serve(listener)
 
 }

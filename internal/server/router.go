@@ -1,23 +1,22 @@
 package server
 
 import (
-	"net/http"
-
 	"github.com/aterip/agata/internal/server/handlers"
+	"github.com/go-chi/chi/v5"
 )
 
-type Route struct {
-	Method  string
-	Pattern string
-	Handler http.HandlerFunc
-}
+func RegisterHandlers() chi.Router {
 
-func RegisterHandlers() {
+	r := chi.NewRouter()
+	r.Route("/user", func(r chi.Router) {
+		r.Post("/", handlers.RegistrationUserHandler)
+		r.Put("/{uid}", handlers.EditUserHandler)
+		r.Delete("/{uid}", handlers.DeleteUserHandler)
+		r.Get("/{uid}", handlers.GetUserHandler)
 
-	routes := []Route{
-		{"POST", "/registery", handlers.RegistrationUserHandler},
-		{"POST", "/auth", handlers.RegistrationUserHandler},
-		{"GET", "/edituser", handlers.EditUserHandler},
-		{"GET", "/registery", handlers.RegistrationUserHandler},
-	}
+	})
+	r.Get("/users", handlers.GetUsersHandler)
+	r.Post("/auth/{uid}", handlers.AuthUserHandler)
+
+	return r
 }
