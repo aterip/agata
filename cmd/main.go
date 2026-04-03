@@ -11,13 +11,21 @@ import (
 	"time"
 
 	"github.com/aterip/agata/internal/config"
+	"github.com/aterip/agata/internal/logging"
 	"github.com/aterip/agata/internal/server"
 	"github.com/go-chi/chi/v5"
 )
 
 func main() {
+	logger := logging.GetLogger()
+
+	logger.Info("Create router")
 	router := server.RegisterHandlers()
+
+	logger.Info("Get server config")
 	cfg := config.GetServerConfig()
+
+	logger.Info("Start server")
 	startServer(router, cfg)
 
 	// dbActiveList := config.GetDataBasesList()
