@@ -10,22 +10,23 @@ import (
 type ServerConfig struct {
 	IsDebug *bool
 	Listen  struct {
-		Protocol string `yaml:"protocol" env:"PROTOCOL"`
-		BindIP   string `yaml:"host" env:"HOST"`
-		Port     string `yaml:"port" env:"PORT"`
+		Type     string `yaml:"type" env-default:"tcp"`
+		Protocol string `yaml:"protocol" env-default:"tcp"`
+		BindIP   string `yaml:"host" env-default:"127.0.0.1"`
+		Port     string `yaml:"port" env-default:"8080"`
 	}
 }
 
 type DataBasesList struct {
-	DataBase map[string]bool `yaml:"dbList" env:"DBLIST"`
+	DataBase map[string]bool `yaml:"dbList" env-default:""`
 }
 
 type PostgresBasicConfig struct {
-	Host   string `yaml:"host" env:"HOST_PG"`
-	Port   string `yaml:"port" env:"PORT_PG"`
-	NameDB string `yaml:"namedb" env:"NAMEDB_PG"`
-	User   string `yaml:"usr" env:"USRDB_PG"`
-	Pswd   string `yaml:"pswd" env:"PSWD_PG"`
+	Host   string `yaml:"host" env-default:"127.0.0.1"`
+	Port   string `yaml:"port" env-default:"5432"`
+	NameDB string `yaml:"namedb" env-default:"postgres_db"`
+	User   string `yaml:"usr" env-default:"postgres"`
+	Pswd   string `yaml:"pswd" env-default:"postgres"`
 }
 
 var databasesList *DataBasesList

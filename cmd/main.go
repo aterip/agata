@@ -1,30 +1,58 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
 	"net/http"
+	"os"
+	"path"
+	"path/filepath"
 	"time"
 
+	"github.com/aterip/agata/internal/config"
 	"github.com/aterip/agata/internal/server"
 	"github.com/go-chi/chi/v5"
 )
 
 func main() {
 	router := server.RegisterHandlers()
-	startServer(router)
+	cfg := config.GetServerConfig()
+	startServer(router, cfg)
+
+	// dbActiveList := config.GetDataBasesList()
+	// pgConfig := config.GetPostgresConfig()
 
 }
 
-func startServer(router chi.Router) {
+func startServer(router chi.Router, cfg *config.ServerConfig) {
 
+	var listener net.Listener
+	var listenErr error
 	log.Println("start server")
 
-	listener, err := net.Listen("tcp", ":8081")
+	if cfg.Listen.Type == "sock" {
+		log.Printf("Server start on socket")
+		appDir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 
-	if err != nil {
-		log.Fatal(err)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		socketPath := path.Join(appDir, "app.sock")
+		log.Printf("Listen socket")
+		listener, listenErr = net.Listen("unix", socketPath)
+
+	} else {
+
+		log.Printf("Listen %s", cfg.Listen.Protocol)
+		listener, listenErr = net.Listen(cfg.Listen.Protocol, fmt.Sprintf("%s:%s", cfg.Listen.BindIP, cfg.Listen.Port))
+
 	}
+	if listenErr != nil {
+		log.Fatal(listenErr)
+	}
+
 	server := &http.Server{
 		Handler:      router,
 		WriteTimeout: 15 * time.Second,
