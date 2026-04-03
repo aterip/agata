@@ -1,1 +1,2 @@
-//Логика PULL сборщика
+// Логика PULL сборщика
+package collector
