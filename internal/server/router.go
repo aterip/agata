@@ -6,17 +6,17 @@ import (
 )
 
 func RegisterHandlers() chi.Router {
-
+	var h handlers.Handler
 	r := chi.NewRouter()
 	r.Route("/user", func(r chi.Router) {
-		r.Post("/", handlers.RegistrationUserHandler)
-		r.Put("/{uid}", handlers.EditUserHandler)
-		r.Delete("/{uid}", handlers.DeleteUserHandler)
-		r.Get("/{uid}", handlers.GetUserHandler)
+		r.Post("/", h.RegistrationUserHandler)
+		r.Put("/{uid}", h.EditUserHandler)
+		r.Delete("/{uid}", h.DeleteUserHandler)
+		r.Get("/{uid}", h.GetUserHandler)
 
 	})
-	r.Get("/users", handlers.GetUsersHandler)
-	r.Post("/auth/{uid}", handlers.AuthUserHandler)
+	r.Get("/users", h.GetUsersHandler)
+	r.Post("/auth/{uid}", h.AuthUserHandler)
 
 	return r
 }
