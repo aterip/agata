@@ -1,4 +1,7 @@
 package handlers
 
-type Handler struct {
+import "github.com/aterip/agata/internal/logging"
+
+type handler struct {
+	logger logging.Logger
 }

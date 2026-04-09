@@ -2,11 +2,14 @@ package server
 
 import (
 	"github.com/aterip/agata/internal/server/handlers"
+	"github.com/aterip/agata/internal/logging"
 	"github.com/go-chi/chi/v5"
 )
 
-func RegisterHandlers() chi.Router {
-	var h handlers.Handler
+func RegisterHandlers(logger logging.Logger) chi.Router {
+	var h handlers.handler{
+		logger:logger,
+	}
 	r := chi.NewRouter()
 	r.Route("/user", func(r chi.Router) {
 		r.Post("/", h.RegistrationUserHandler)

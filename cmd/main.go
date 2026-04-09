@@ -20,7 +20,7 @@ func main() {
 	logger := logging.GetLogger()
 
 	logger.Info("Create router")
-	router := server.RegisterHandlers()
+	router := server.RegisterHandlers(logger)
 
 	logger.Info("Get server config")
 	cfg := config.GetServerConfig()
