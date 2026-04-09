@@ -10,3 +10,6 @@ time="2026-04-07T16:22:47+03:00" level=info msg="Start server" func="main.main()
 time="2026-04-07T16:24:12+03:00" level=info msg="Create router" func="main.main()" file="main.go : 22"
 time="2026-04-07T16:24:12+03:00" level=info msg="Get server config" func="main.main()" file="main.go : 25"
 time="2026-04-07T16:24:12+03:00" level=info msg="Start server" func="main.main()" file="main.go : 28"
+time="2026-04-07T16:26:20+03:00" level=info msg="Create router" func="main.main()" file="main.go : 22"
+time="2026-04-07T16:26:20+03:00" level=info msg="Get server config" func="main.main()" file="main.go : 25"
+time="2026-04-07T16:26:20+03:00" level=info msg="Start server" func="main.main()" file="main.go : 28"

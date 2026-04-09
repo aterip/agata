@@ -7,9 +7,7 @@ import (
 )
 
 func RegisterHandlers(logger logging.Logger) chi.Router {
-	var h handlers.handler{
-		logger:logger,
-	}
+	var h := handlers.Newhandler(logger)
 	r := chi.NewRouter()
 	r.Route("/user", func(r chi.Router) {
 		r.Post("/", h.RegistrationUserHandler)
